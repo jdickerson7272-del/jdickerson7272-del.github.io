@@ -20,41 +20,76 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
+        
+        /* Centered, Minimalist Header */
         header {
-            background-color: var(--bg-card);
-            padding: 3rem 2rem;
+            background-color: var(--bg-dark);
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 2rem;
             border-bottom: 4px solid var(--accent-blue);
         }
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             color: var(--accent-light);
+            letter-spacing: 1px;
+        }
+        header h2 {
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            border: none;
+            padding: 0;
         }
         header p {
             color: var(--text-muted);
-            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            margin: 0;
         }
+
         .container {
             max-width: 900px;
             margin: 2rem auto;
             padding: 0 2rem;
         }
-        section {
-            margin-bottom: 3rem;
+        
+        /* Scroll Animation Classes */
+        .scroll-hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
         }
-        h2 {
+        .scroll-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+        section > h2 {
             color: var(--accent-blue);
             border-bottom: 2px solid var(--accent-blue);
             padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
         .card {
             background-color: var(--bg-card);
             padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
         }
         .card h3 {
             margin-top: 0;
@@ -62,6 +97,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         .date {
             font-size: 0.9rem;
@@ -70,6 +106,7 @@
         }
         ul {
             padding-left: 1.2rem;
+            margin-bottom: 0;
         }
         li {
             margin-bottom: 0.5rem;
@@ -77,106 +114,106 @@
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        a {
-            color: var(--accent-light);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+            gap: 1.5rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Joseph Dickerson[cite: 2]</h1>
-        <p>2917 Asheton Ct., Edmond, OK 73034[cite: 2] | (405) 403-2938[cite: 2] | <a href="mailto:Joseph.T.Dickerson-1@ou.edu">Joseph.T.Dickerson-1@ou.edu</a>[cite: 2]</p>
+        <h1>Joseph Dickerson</h1>
+        <h2>Petroleum Engineering</h2>
+        <p>Class of 2029</p>
     </header>
 
     <div class="container">
         
-        <section>
-            <h2>Education[cite: 2]</h2>
-            
+        <section class="scroll-hidden">
+            <h2>Education</h2>
             <div class="card">
-                <h3>University of Oklahoma, Norman - Petroleum Engineering[cite: 2] <span class="date">August 2025-Present[cite: 2]</span></h3>
+                <h3>University of Oklahoma, Norman <span class="date">August 2025 - Present</span></h3>
                 <ul>
-                    <li>GPA: 3.5[cite: 2] | Expected Graduation Date: May 2029[cite: 2]</li>
-                    <li>Petroleum Engineering major with minors in Geology and Computer Science.[cite: 2]</li>
-                    <li>Attend OU with a tuition waiver as a result of my ACT score.[cite: 2]</li>
+                    <li><strong>Major:</strong> Petroleum Engineering | <strong>Minors:</strong> Geology and Computer Science</li>
+                    <li><strong>GPA:</strong> 3.5 | Attending with a tuition waiver based on ACT merit.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h3>Oklahoma Aviation, Wiley Post Airport - Private Pilot's License[cite: 2] <span class="date">February 2024-August 2026[cite: 2]</span></h3>
+                <h3>Oklahoma Aviation, Wiley Post Airport <span class="date">February 2024 - August 2026</span></h3>
                 <ul>
-                    <li>Flight training encompasses aircraft maneuvers, navigation, emergency procedures, and cross-country flight planning, enabling solo pilots to navigate the aircraft effectively.[cite: 2]</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Bishop McGuinness Catholic High School, Oklahoma City[cite: 2] <span class="date">August 2021-May 2025[cite: 2]</span></h3>
-                <ul>
-                    <li>GPA weighted: 4.71[cite: 2] | GPA unweighted: 4.0[cite: 2]</li>
-                    <li>Graduated top 5 of class; named an Oklahoma State Regents for Higher Education; Academic Scholar and AP Scholar with Distinction[cite: 2]</li>
+                    <li><strong>Private Pilot's License:</strong> Flight training encompasses aircraft maneuvers, navigation, emergency procedures, and cross-country flight planning.</li>
                 </ul>
             </div>
         </section>
 
-        <section>
-            <h2>Experience[cite: 2]</h2>
-            
+        <section class="scroll-hidden">
+            <h2>Experience</h2>
             <div class="card">
-                <h3>Ted's Cafe Escondido - Server[cite: 2] <span class="date">May 2026-August 2026[cite: 2]</span></h3>
+                <h3>Ted's Cafe Escondido - Server <span class="date">May 2026 - August 2026</span></h3>
                 <ul>
-                    <li>Worked as a server at a high-volume Mexican restaurant, utilizing conversational Spanish to coordinate with back-of-house staff.[cite: 2]</li>
+                    <li>Managed high-volume service requirements under pressure, utilizing conversational Spanish to communicate effectively with diverse back-of-house teams and execute time-sensitive tasks.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h3>Frida Southwest - Food Runner/Host/Polisher[cite: 2] <span class="date">October 2023-August 2025[cite: 2]</span></h3>
+                <h3>Frida Southwest - Food Runner / Host / Polisher <span class="date">October 2023 - August 2025</span></h3>
                 <ul>
-                    <li>Worked in the front of house as a host and the back of house as a food runner and polisher at one of OKC's premier fine dining restaurants.[cite: 2]</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>Academic Projects[cite: 2]</h2>
-            <div class="card">
-                <h3>SES Research Grant Proposal, Norman - Lead Author[cite: 2] <span class="date">August 2026-Present[cite: 2]</span></h3>
-                <ul>
-                    <li>Engineering a Python model applying thermodynamic standards to evaluate Dynamic Line Ratings (DLR) on 138kV transmission networks.[cite: 2]</li>
-                    <li>Visualizing historical meteorological data using TIBCO Spotfire to demonstrate how DLR increases renewable energy capacity.[cite: 2]</li>
+                    <li>Navigated simultaneous responsibilities in front-of-house logistics and back-of-house support, demonstrating strong adaptability and communication in a premier fine dining setting.</li>
                 </ul>
             </div>
         </section>
 
-        <section>
-            <h2>Skills & Involvement[cite: 2]</h2>
+        <section class="scroll-hidden">
+            <h2>Academic Projects</h2>
+            <div class="card">
+                <h3>SES Research Grant Proposal - Lead Author <span class="date">August 2026 - Present</span></h3>
+                <ul>
+                    <li>Engineering a Python model applying thermodynamic standards to evaluate Dynamic Line Ratings (DLR) on 138kV transmission networks.</li>
+                    <li>Visualizing historical meteorological data using TIBCO Spotfire to demonstrate how DLR increases renewable energy capacity without requiring infrastructure teardowns.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="scroll-hidden">
+            <h2>Skills & Involvement</h2>
             <div class="skills-grid">
                 <div class="card">
-                    <h3>Skills[cite: 2]</h3>
+                    <h3>Technical & Language</h3>
                     <ul>
-                        <li>TIBCO Spotfire Certification (In Progress, Expected September 2026)[cite: 2]</li>
-                        <li>Conversational Spanish[cite: 2]</li>
-                        <li>Advanced Chemical Coursework (Including Organic Chemistry I & II)[cite: 2]</li>
+                        <li>TIBCO Spotfire (Certification in Progress)</li>
+                        <li>Python Programming</li>
+                        <li>Conversational Spanish</li>
+                        <li>Advanced Chemical Coursework</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3>Collegiate Involvement[cite: 2]</h3>
+                    <h3>Collegiate Involvement</h3>
                     <ul>
-                        <li>Active Member of Beta Theta Pi (Gamma Phi Chapter)[cite: 2]</li>
-                        <li>Member of the American Institute of Chemical Engineers (AIChE)[cite: 2]</li>
-                        <li>Member of the Society of Petroleum Engineers (SPE)[cite: 2]</li>
-                        <li>Participant on the Chem-E-Car Team[cite: 2]</li>
-                        <li>Member of the OU Club Tennis Team[cite: 2]</li>
+                        <li>Society of Petroleum Engineers (SPE)</li>
+                        <li>American Institute of Chemical Engineers (AIChE)</li>
+                        <li>Beta Theta Pi (Gamma Phi Chapter)</li>
+                        <li>Chem-E-Car Team</li>
+                        <li>OU Club Tennis Team</li>
                     </ul>
                 </div>
             </div>
         </section>
     </div>
+
+    <!-- Script to trigger the scroll animation -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-show');
+                }
+            });
+        }, {
+            threshold: 0.1 /* Triggers when 10% of the section is visible */
+        });
+
+        const hiddenElements = document.querySelectorAll('.scroll-hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
 </body>
 </html>
