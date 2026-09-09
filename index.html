@@ -3,68 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joseph Dickerson - Portfolio</title>
+    <title>Joseph Dickerson | Petroleum Engineering</title>
+    
+    <!-- Modern Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --bg-dark: #0f172a;
+            --bg-dark: #0b1120;
             --bg-card: #1e293b;
+            --bg-nav: rgba(11, 17, 32, 0.85);
             --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
+            --text-muted: #94a3b8;
             --accent-blue: #3b82f6;
-            --accent-light: #60a5fa;
+            --accent-light: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --border-subtle: rgba(255, 255, 255, 0.05);
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
-        
-        /* Centered, Minimalist Header */
+
+        /* Sticky Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Hero Section */
         header {
-            background-color: var(--bg-dark);
-            min-height: 70vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 2rem;
-            border-bottom: 4px solid var(--accent-blue);
+        }
+        .hero-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-light);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
         header h1 {
             margin: 0;
-            font-size: 3.5rem;
-            color: var(--accent-light);
-            letter-spacing: 1px;
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            /* Gradient Text Effect */
+            background: linear-gradient(to right, #f8fafc, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         header h2 {
-            margin: 1rem 0 0.5rem 0;
+            margin: 1rem 0 1.5rem 0;
             font-size: 1.5rem;
-            color: var(--text-main);
-            border: none;
-            padding: 0;
-        }
-        header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            margin: 0;
+            font-weight: 400;
+        }
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .contact-info i {
+            color: var(--accent-light);
+            margin-right: 0.5rem;
+        }
+        .contact-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: var(--accent-light);
         }
 
         .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
         }
         
         /* Scroll Animation Classes */
         .scroll-hidden {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .scroll-show {
             opacity: 1;
@@ -72,133 +141,222 @@
         }
 
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
+            padding-top: 4rem; /* Offset for sticky nav */
         }
         section > h2 {
-            color: var(--accent-blue);
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
         }
+        section > h2 i {
+            color: var(--accent-blue);
+            margin-right: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Glassmorphism Cards */
         .card {
             background-color: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: 16px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px var(--accent-glow);
+            border-color: rgba(56, 189, 248, 0.3);
         }
         .card h3 {
             margin-top: 0;
-            color: var(--accent-light);
+            font-size: 1.25rem;
+            color: var(--text-main);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
         }
+        .card h4 {
+            color: var(--accent-light);
+            margin: -0.5rem 0 1rem 0;
+            font-weight: 500;
+        }
         .date {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
-            font-weight: normal;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
         }
         ul {
             padding-left: 1.2rem;
             margin-bottom: 0;
+            color: var(--text-muted);
         }
         li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
+        li strong {
+            color: var(--text-main);
+        }
+
+        /* Skills Pills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
+        }
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-light);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.2s ease;
+        }
+        .tag:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header h1 { font-size: 3rem; }
+            .contact-info { flex-direction: column; gap: 0.5rem; }
+            nav a { margin: 0 0.75rem; font-size: 0.8rem; }
+            .card h3 { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .date { margin-top: 0.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <nav>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+    </nav>
+
+    <header id="home">
+        <div class="hero-badge">University of Oklahoma '29</div>
         <h1>Joseph Dickerson</h1>
-        <h2>Petroleum Engineering</h2>
-        <p>Class of 2029</p>
+        <h2>Petroleum Engineering | Data Analytics & Automation</h2>
+        
+        <div class="contact-info">
+            <span><i class="fa-solid fa-location-dot"></i> Edmond, OK</span>
+            <a href="mailto:Joseph.T.Dickerson-1@ou.edu"><i class="fa-solid fa-envelope"></i> Joseph.T.Dickerson-1@ou.edu</a>
+        </div>
     </header>
 
     <div class="container">
         
-        <section class="scroll-hidden">
-            <h2>Education</h2>
+        <section id="education" class="scroll-hidden">
+            <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+            
             <div class="card">
-                <h3>University of Oklahoma, Norman <span class="date">August 2025 - Present</span></h3>
+                <h3>University of Oklahoma, Norman <span class="date">August 2025 – Present</span></h3>
+                <h4>Bachelor of Science in Petroleum Engineering</h4>
                 <ul>
-                    <li><strong>Major:</strong> Petroleum Engineering | <strong>Minors:</strong> Geology and Computer Science</li>
+                    <li><strong>Minors:</strong> Geology and Computer Science.</li>
                     <li><strong>GPA:</strong> 3.5 | Attending with a tuition waiver based on ACT merit.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h3>Oklahoma Aviation, Wiley Post Airport <span class="date">February 2024 - August 2026</span></h3>
+                <h3>Oklahoma Aviation, Wiley Post Airport <span class="date">February 2024 – August 2026</span></h3>
+                <h4>Private Pilot's License Training</h4>
                 <ul>
-                    <li><strong>Private Pilot's License:</strong> Flight training encompasses aircraft maneuvers, navigation, emergency procedures, and cross-country flight planning.</li>
+                    <li>Flight training encompasses aircraft maneuvers, navigation, emergency procedures, and comprehensive cross-country flight planning.</li>
                 </ul>
             </div>
         </section>
 
-        <section class="scroll-hidden">
-            <h2>Experience</h2>
+        <section id="experience" class="scroll-hidden">
+            <h2><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
+            
             <div class="card">
-                <h3>Ted's Cafe Escondido - Server <span class="date">May 2026 - August 2026</span></h3>
+                <h3>Ted's Cafe Escondido <span class="date">May 2026 – August 2026</span></h3>
+                <h4>Server</h4>
                 <ul>
                     <li>Managed high-volume service requirements under pressure, utilizing conversational Spanish to communicate effectively with diverse back-of-house teams and execute time-sensitive tasks.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h3>Frida Southwest - Food Runner / Host / Polisher <span class="date">October 2023 - August 2025</span></h3>
+                <h3>Frida Southwest <span class="date">October 2023 – August 2025</span></h3>
+                <h4>Food Runner & Host Operations</h4>
                 <ul>
-                    <li>Navigated simultaneous responsibilities in front-of-house logistics and back-of-house support, demonstrating strong adaptability and communication in a premier fine dining setting.</li>
+                    <li>Navigated simultaneous responsibilities in front-of-house logistics and back-of-house support, demonstrating strong adaptability and cross-functional communication in a premier fine dining setting.</li>
                 </ul>
             </div>
         </section>
 
-        <section class="scroll-hidden">
-            <h2>Academic Projects</h2>
+        <section id="projects" class="scroll-hidden">
+            <h2><i class="fa-solid fa-flask"></i> Academic Projects</h2>
+            
             <div class="card">
-                <h3>SES Research Grant Proposal - Lead Author <span class="date">August 2026 - Present</span></h3>
+                <h3>SES Research Grant Proposal <span class="date">August 2026 – Present</span></h3>
+                <h4>Lead Author & Researcher</h4>
                 <ul>
                     <li>Engineering a Python model applying thermodynamic standards to evaluate Dynamic Line Ratings (DLR) on 138kV transmission networks.</li>
-                    <li>Visualizing historical meteorological data using TIBCO Spotfire to demonstrate how DLR increases renewable energy capacity without requiring infrastructure teardowns.</li>
+                    <li>Visualizing historical meteorological data using TIBCO Spotfire to demonstrate how DLR increases renewable energy capacity without requiring expensive infrastructure teardowns.</li>
                 </ul>
             </div>
         </section>
 
-        <section class="scroll-hidden">
-            <h2>Skills & Involvement</h2>
+        <section id="skills" class="scroll-hidden">
+            <h2><i class="fa-solid fa-bolt"></i> Technical Skills & Involvement</h2>
+            
             <div class="skills-grid">
                 <div class="card">
-                    <h3>Technical & Language</h3>
-                    <ul>
-                        <li>TIBCO Spotfire (Certification in Progress)</li>
-                        <li>Python Programming</li>
-                        <li>Conversational Spanish</li>
-                        <li>Advanced Chemical Coursework</li>
-                    </ul>
+                    <h3>Software & Languages</h3>
+                    <div class="tags-container">
+                        <span class="tag"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="tag"><i class="fa-solid fa-chart-line"></i> TIBCO Spotfire</span>
+                        <span class="tag"><i class="fa-solid fa-language"></i> Conversational Spanish</span>
+                        <span class="tag"><i class="fa-solid fa-vial"></i> Adv. Chemistry</span>
+                        <span class="tag"><i class="fa-solid fa-plane"></i> Aviation Routing</span>
+                    </div>
                 </div>
+                
                 <div class="card">
-                    <h3>Collegiate Involvement</h3>
+                    <h3>Collegiate Affiliations</h3>
                     <ul>
-                        <li>Society of Petroleum Engineers (SPE)</li>
-                        <li>American Institute of Chemical Engineers (AIChE)</li>
-                        <li>Beta Theta Pi (Gamma Phi Chapter)</li>
-                        <li>Chem-E-Car Team</li>
-                        <li>OU Club Tennis Team</li>
+                        <li><strong>SPE:</strong> Society of Petroleum Engineers</li>
+                        <li><strong>AIChE:</strong> American Institute of Chemical Engineers</li>
+                        <li><strong>Chem-E-Car:</strong> Engineering Project Team</li>
+                        <li><strong>Beta Theta Pi:</strong> Gamma Phi Chapter</li>
+                        <li><strong>Athletics:</strong> OU Club Tennis Team</li>
                     </ul>
                 </div>
             </div>
         </section>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Joseph Dickerson. Built for engineering and operations excellence.</p>
+    </footer>
 
     <!-- Script to trigger the scroll animation -->
     <script>
@@ -209,7 +367,8 @@
                 }
             });
         }, {
-            threshold: 0.1 /* Triggers when 10% of the section is visible */
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
         });
 
         const hiddenElements = document.querySelectorAll('.scroll-hidden');
