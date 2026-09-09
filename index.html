@@ -8,7 +8,7 @@
     <!-- Modern Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,16 +22,25 @@
             --text-muted: #94a3b8;
             --accent-blue: #3b82f6;
             --accent-light: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
+            --accent-glow: rgba(56, 189, 248, 0.25);
             --border-subtle: rgba(255, 255, 255, 0.05);
+            --border-hover: rgba(56, 189, 248, 0.4);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
+            /* Technical Blueprint Grid & Glow Effect */
             background-image: 
-                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.1) 0px, transparent 50%);
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.12), transparent 25%);
+            background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
             background-attachment: fixed;
             color: var(--text-main);
             line-height: 1.7;
@@ -61,10 +70,26 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
             transition: color 0.3s ease;
+        }
+        /* Animated Nav Underline */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-light);
+            transition: width 0.3s ease;
         }
         nav a:hover {
             color: var(--accent-light);
+        }
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
@@ -76,25 +101,31 @@
             align-items: center;
             text-align: center;
             padding: 2rem;
+            position: relative;
         }
         .hero-badge {
             background: rgba(59, 130, 246, 0.1);
             color: var(--accent-light);
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 50px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             letter-spacing: 1px;
+            animation: pulse 2.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
         }
         header h1 {
             margin: 0;
             font-size: 4.5rem;
             font-weight: 700;
             letter-spacing: -1px;
-            /* Gradient Text Effect */
-            background: linear-gradient(to right, #f8fafc, #38bdf8);
+            background: linear-gradient(to right, #ffffff, #38bdf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -104,22 +135,15 @@
             color: var(--text-muted);
             font-weight: 400;
         }
-        .contact-info {
+        
+        .location-tag {
+            color: var(--text-muted);
+            font-size: 1rem;
             display: flex;
-            gap: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .contact-info i {
-            color: var(--accent-light);
-            margin-right: 0.5rem;
-        }
-        .contact-info a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .contact-info a:hover {
+        .location-tag i {
             color: var(--accent-light);
         }
 
@@ -132,7 +156,7 @@
         /* Scroll Animation Classes */
         .scroll-hidden {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .scroll-show {
@@ -142,7 +166,8 @@
 
         section {
             margin-bottom: 6rem;
-            padding-top: 4rem; /* Offset for sticky nav */
+            padding-top: 5rem;
+            margin-top: -5rem; /* Offset for sticky nav targeting */
         }
         section > h2 {
             font-size: 2rem;
@@ -164,12 +189,25 @@
             padding: 2rem;
             border-radius: 16px;
             margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-blue);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px -10px var(--accent-glow);
-            border-color: rgba(56, 189, 248, 0.3);
+            border-color: var(--border-hover);
+        }
+        .card:hover::before {
+            opacity: 1;
         }
         .card h3 {
             margin-top: 0;
@@ -191,6 +229,7 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
+            border: 1px solid var(--border-subtle);
         }
         ul {
             padding-left: 1.2rem;
@@ -204,7 +243,7 @@
             color: var(--text-main);
         }
 
-        /* Skills Pills Grid */
+        /* Skills Pills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -219,16 +258,64 @@
         .tag {
             background: rgba(59, 130, 246, 0.1);
             color: var(--accent-light);
-            padding: 0.4rem 1rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
             border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
+            cursor: default;
         }
         .tag:hover {
-            background: rgba(59, 130, 246, 0.2);
+            background: var(--accent-blue);
+            color: #fff;
             transform: scale(1.05);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* Interactive Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .contact-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-light);
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
+            background: rgba(30, 41, 59, 0.8);
+        }
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        .contact-card:hover i {
+            color: var(--accent-light);
+        }
+        .contact-card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        .contact-card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         footer {
@@ -237,13 +324,13 @@
             color: var(--text-muted);
             border-top: 1px solid var(--border-subtle);
             font-size: 0.9rem;
+            background: rgba(11, 17, 32, 0.9);
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             header h1 { font-size: 3rem; }
-            .contact-info { flex-direction: column; gap: 0.5rem; }
-            nav a { margin: 0 0.75rem; font-size: 0.8rem; }
+            nav a { margin: 0 0.5rem; font-size: 0.75rem; }
             .card h3 { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
             .date { margin-top: 0.5rem; }
         }
@@ -256,16 +343,15 @@
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
     </nav>
 
     <header id="home">
-        <div class="hero-badge">University of Oklahoma '29</div>
+        <div class="hero-badge">Class of 2029</div>
         <h1>Joseph Dickerson</h1>
         <h2>Petroleum Engineering | Data Analytics & Automation</h2>
-        
-        <div class="contact-info">
-            <span><i class="fa-solid fa-location-dot"></i> Edmond, OK</span>
-            <a href="mailto:Joseph.T.Dickerson-1@ou.edu"><i class="fa-solid fa-envelope"></i> Joseph.T.Dickerson-1@ou.edu</a>
+        <div class="location-tag">
+            <i class="fa-solid fa-location-dot"></i> Edmond, OK
         </div>
     </header>
 
@@ -352,6 +438,28 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact" class="scroll-hidden">
+            <h2><i class="fa-solid fa-address-card"></i> Let's Connect</h2>
+            <div class="contact-grid">
+                <a href="mailto:Joseph.T.Dickerson-1@ou.edu" class="contact-card">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3>University Email</h3>
+                    <p>Joseph.T.Dickerson-1@ou.edu</p>
+                </a>
+                <a href="mailto:jdickerson7272@gmail.com" class="contact-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Personal Email</h3>
+                    <p>jdickerson7272@gmail.com</p>
+                </a>
+                <a href="tel:+14054032938" class="contact-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>(405) 403-2938</p>
+                </a>
+            </div>
+        </section>
+
     </div>
 
     <footer>
